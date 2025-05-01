@@ -26,7 +26,6 @@ SECRET_KEY = 'django-insecure-*!$38)u*)79ny0km&co(i9frimovsx57sg1%78b!r%!)pguy$0
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-DISABLE_COLLECTSTATIC = 1
 ALLOWED_HOSTS = []
 # Application definition
 STATIC_URL = '/static/'
