@@ -28,7 +28,9 @@ SECRET_KEY = 'django-insecure-*!$38)u*)79ny0km&co(i9frimovsx57sg1%78b!r%!)pguy$0
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # Ruta a tu carpeta "static" local
+]
 # Application definition
 STATIC_URL = '/static/'
 if not DEBUG:
