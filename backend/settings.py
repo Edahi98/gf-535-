@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default="postgresql://nb8ckn:xau_LAaIruuxT2hx6yL0VhaOkVTB6PguZXGV1@us-east-1.sql.xata.sh/crocodile-db:main",
+        default=os.environ.get("URL_DB"),
         ssl_require=True,
         conn_max_age=600
     )
