@@ -3,7 +3,6 @@ from django.db.models import (
     TextField,
     ForeignKey,
     CASCADE,
-    UUIDField,
     AutoField
 )
 from uuid import uuid4
@@ -14,12 +13,6 @@ class TipoArticuloModel(Model):
     nombre = TextField(null=False)
     url_imagen = TextField(null=False)
     id_imagen = TextField(null=False)
-
-class UsuarioModel(Model):
-    id = UUIDField(primary_key=True, default=uuid4)
-    nickname = TextField(null=False, unique=True)
-    password = TextField(null=False, unique=True)
-    t2f_url = TextField(null=False, unique=True)
 
 class ArticuloModel(Model):
     id = AutoField(primary_key=True, auto_created=True)

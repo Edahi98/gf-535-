@@ -1,28 +1,19 @@
-from rest_framework.serializers import ModelSerializer
-from .models import TipoArticuloModel, ArticuloModel, NotaModel, UsuarioModel
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
+from .models import TipoArticuloModel, ArticuloModel, NotaModel
 
 class TipoArticuloSerializer(ModelSerializer):
     class Meta:
         model = TipoArticuloModel
-        fields = ["id", "nombre", "url_imagen", "id_imagen"]
-        read_only_fields = ('id',)
+        fields = "__all__"
 
 class ArticuloSerializer(ModelSerializer):
-    articulo_tipos = TipoArticuloSerializer(many=True)
+    articulo_tipos = PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = ArticuloModel
-        fields = ["id", "nombre", "url_imagen", "id_imagen", "articulo_tipos"]
-        read_only_fields = ("id",)
+        fields = "__all__"
 
 class NotaSerializer(ModelSerializer):
-    articulos = ArticuloSerializer(many=True)
+    articulos = PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = NotaModel
-        fields = ["id", "titulo", "descripcion", "articulos"]
-        read_only_fields = ("id",)
-
-class UsuarioSerializer(ModelSerializer):
-    class Meta:
-        model = UsuarioModel
-        fields = ["nickname", "t2f_url", "pwd"]
-
+        fields = "__all__"
