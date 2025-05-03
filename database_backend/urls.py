@@ -8,6 +8,7 @@ router = DefaultRouter()
 router.register(r"articulos", views_api.ArticuloViewSet)
 router.register(r"tipos_articulos", views_api.TipoArticuloViewSet)
 router.register(r"notas", views_api.NotaViewSet)
+router.register(r"usuarios", views_api.UserViewSet)
 
 urlpatterns = [
     path("api-token-auth/", views.obtain_auth_token),

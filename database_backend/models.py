@@ -27,7 +27,7 @@ class ArticuloModel(Model):
     nombre = TextField(null=False)
     url_imagen = TextField(null=False)
     id_imagen = TextField(null=False)
-    id_articulo_tipo = ForeignKey(TipoArticuloModel, related_name="articulo_tipos", on_delete=CASCADE)
+    id_articulo_tipo = ForeignKey(TipoArticuloModel, related_name="articulos", on_delete=CASCADE)
 
     @admin.display
     def imagen(self):
@@ -40,4 +40,4 @@ class NotaModel(Model):
     id = AutoField(primary_key=True, auto_created=True)
     titulo = TextField(null=False)
     descripcion = TextField(null=False)
-    id_articulo = ForeignKey(ArticuloModel, related_name="articulos", on_delete=CASCADE)
+    id_articulo = ForeignKey(ArticuloModel, related_name="notas", on_delete=CASCADE)

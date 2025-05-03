@@ -1,19 +1,41 @@
 from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 from .models import TipoArticuloModel, ArticuloModel, NotaModel
-
-class TipoArticuloSerializer(ModelSerializer):
-    class Meta:
-        model = TipoArticuloModel
-        fields = "__all__"
-
-class ArticuloSerializer(ModelSerializer):
-    articulo_tipos = PrimaryKeyRelatedField(many=True, read_only=True)
-    class Meta:
-        model = ArticuloModel
-        fields = "__all__"
+from django.contrib.auth.models import User
 
 class NotaSerializer(ModelSerializer):
-    articulos = PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = NotaModel
+        fields = [
+            "id",
+            "titulo",
+            "descripcion"
+        ]
+
+class ArticuloSerializer(ModelSerializer):
+    notas = NotaSerializer(many=True, read_only=True)
+    class Meta:
+        model = ArticuloModel
+        fields = [
+            "id",
+            "nombre",
+            "url_imagen",
+            "id_imagen",
+            "notas"
+        ]
+
+class TipoArticuloSerializer(ModelSerializer):
+    articulos = ArticuloSerializer(many=True, read_only=True)
+    class Meta:
+        model = TipoArticuloModel
+        fields = [
+            "id",
+            "nombre",
+            "url_imagen",
+            "id_imagen",
+            "articulos"
+        ]
+
+class UserSerializer(ModelSerializer):
+    class Meta:
+        model = User
         fields = "__all__"
