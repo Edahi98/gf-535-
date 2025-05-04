@@ -23,13 +23,13 @@ class ArticuloViewSet(ModelViewSet):
 
 class TipoArticuloViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
-    authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication, SessionAuthentication, BasicAuthentication]
     serializer_class = TipoArticuloSerializer
     queryset = TipoArticuloModel.objects.prefetch_related("articulos").all()
 
 
 class NotaViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
-    authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication, SessionAuthentication, BasicAuthentication]
     serializer_class = NotaSerializer
     queryset = NotaModel.objects.all()
