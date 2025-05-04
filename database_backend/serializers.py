@@ -22,7 +22,6 @@ class ArticuloSerializer(ModelSerializer):
             "id",
             "nombre",
             "url_imagen",
-            "id_imagen",
             "id_articulo_tipo",
             "notas"
         ]
@@ -35,7 +34,6 @@ class TipoArticuloSerializer(ModelSerializer):
             "id",
             "nombre",
             "url_imagen",
-            "id_imagen",
             "articulos"
         ]
 

@@ -3,8 +3,10 @@ from django.db.models import (
     TextField,
     ForeignKey,
     CASCADE,
-    AutoField
+    AutoField,
+    ImageField
 )
+from cloudinary_storage.storage import MediaCloudinaryStorage
 from django.contrib import admin
 from django.utils.html import format_html
 # Create your models here.
@@ -12,8 +14,7 @@ from django.utils.html import format_html
 class TipoArticuloModel(Model):
     id = AutoField(primary_key=True, auto_created=True)
     nombre = TextField(null=False)
-    url_imagen = TextField(null=False)
-    id_imagen = TextField(null=False)
+    url_imagen = ImageField(blank=True, upload_to="images/", storage=MediaCloudinaryStorage)
 
     @admin.display
     def imagen(self):
@@ -25,8 +26,7 @@ class TipoArticuloModel(Model):
 class ArticuloModel(Model):
     id = AutoField(primary_key=True, auto_created=True)
     nombre = TextField(null=False)
-    url_imagen = TextField(null=False)
-    id_imagen = TextField(null=False)
+    url_imagen = ImageField(blank=True, upload_to="images/", storage=MediaCloudinaryStorage)
     id_articulo_tipo = ForeignKey(TipoArticuloModel, related_name="articulos", on_delete=CASCADE)
 
     @admin.display
