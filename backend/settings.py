@@ -40,6 +40,8 @@ if not DEBUG:
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    "admin_interface",
+    "colorfield",
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -53,6 +55,7 @@ INSTALLED_APPS = [
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
