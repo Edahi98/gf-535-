@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -15,7 +16,7 @@ class UserViewSet(ReadOnlyModelViewSet):
 
 class ArticuloViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
-    authentication_classes = [JWTAuthentication]
+    authentication_classes = [JWTAuthentication, SessionAuthentication, BasicAuthentication]
     serializer_class = ArticuloSerializer
     queryset = ArticuloModel.objects.prefetch_related("notas").all()
 
