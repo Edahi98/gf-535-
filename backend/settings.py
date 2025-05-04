@@ -47,10 +47,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "rest_wind",
     'rest_framework',
     'rest_framework.authtoken',
     'database_backend.apps.DatabaseBackendConfig',
-'django_filters',
+    'django_filters',
 
 ]
 
