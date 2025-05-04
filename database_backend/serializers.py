@@ -21,7 +21,7 @@ class ArticuloSerializer(ModelSerializer):
             "nombre",
             "url_imagen",
             "id_imagen",
-            "id_articulo_tipo"
+            "id_articulo_tipo",
             "notas"
         ]
 
