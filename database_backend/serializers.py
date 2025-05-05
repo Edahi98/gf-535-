@@ -3,7 +3,6 @@ from .models import TipoArticuloModel, ArticuloModel, NotaModel
 from django.contrib.auth.models import User
 
 class NotaSerializer(ModelSerializer):
-    id_articulo = PrimaryKeyRelatedField(write_only=True, queryset=NotaModel.objects.all())
     class Meta:
         model = NotaModel
         fields = [
@@ -13,9 +12,18 @@ class NotaSerializer(ModelSerializer):
             "id_articulo"
         ]
 
+class ArticuloDetallesSerializer(ModelSerializer):
+    class Meta:
+        model = ArticuloModel
+        fields = [
+            "id",
+            "nombre",
+            "url_imagen",
+            "id_articulo_tipo"
+        ]
+
 class ArticuloSerializer(ModelSerializer):
     notas = NotaSerializer(many=True, read_only=True)
-    id_articulo_tipo = PrimaryKeyRelatedField(queryset=TipoArticuloModel.objects.all(), write_only=True)
     class Meta:
         model = ArticuloModel
         fields = [
@@ -41,3 +49,18 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"
+
+class TipoArticuloWithIdAndNombreSerializer(ModelSerializer):
+    class Meta:
+        model = TipoArticuloModel
+        fields = [
+            "id",
+            "nombre"
+        ]
+class TipoArticuloWithImagenAndNombreSerializer(ModelSerializer):
+    class Meta:
+        model = TipoArticuloModel
+        fields = [
+            "url_imagen",
+            "nombre"
+        ]
