@@ -1,3 +1,5 @@
+from django.core.files.base import ContentFile
+from base64 import b64decode
 from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 from .models import TipoArticuloModel, ArticuloModel, NotaModel
 from django.contrib.auth.models import User
@@ -13,6 +15,9 @@ class NotaSerializer(ModelSerializer):
         ]
 
 class ArticuloDetallesSerializer(ModelSerializer):
+    def create(self, validated_data):
+        bs64 = validated_data.pop("url_imagen")
+        return ArticuloModel.objects.create(image=ContentFile(b64decode(bs64), name="ima.png"), **validated_data)
     class Meta:
         model = ArticuloModel
         fields = [
