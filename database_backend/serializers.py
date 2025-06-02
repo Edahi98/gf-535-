@@ -17,7 +17,7 @@ class NotaSerializer(ModelSerializer):
 class ArticuloDetallesSerializer(ModelSerializer):
     def create(self, validated_data):
         bs64 = validated_data.pop("url_imagen")
-        return ArticuloModel.objects.create(url_image=ContentFile(b64decode(bs64), name="ima.png"), **validated_data)
+        return ArticuloModel.objects.create(url_imagen=ContentFile(b64decode(bs64), name="ima.png"), **validated_data)
     class Meta:
         model = ArticuloModel
         fields = [
